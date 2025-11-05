@@ -111,7 +111,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Toys", path: "/allToy" },
     { name: "About", path: "/about" },
-    { name: "My Profile", path: "/profile" },
+    { name: "My Profile",  path: "/profile" },
   ];
 
   return (
