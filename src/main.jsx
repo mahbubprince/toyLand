@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Root from "./routes/Root.jsx";
@@ -12,6 +11,7 @@ import Myprofile from "./pages/Myprofile.jsx";
 import AllToy from "./pages/AllToy.jsx";
 import About from "./pages/About.jsx";
 import Navbar from "./componants/Navbar.jsx";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -66,5 +66,6 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
+    <ToastContainer></ToastContainer>
   </StrictMode>
 );
