@@ -1,0 +1,57 @@
+[
+  {
+    "id": 3,
+    "thumbnail": "/img-3.jpg",
+    "toyName": "Remote Control Monster Truck",
+    "rating": 4.8,
+    "availableQuantity": 8,
+    "price": 49.99,
+    "description": "Durable RC monster truck with all-terrain wheels and long battery life — perfect for off-road adventures."
+  },
+
+  {
+    "id": 5,
+    "thumbnail": "/img-5.jpg",
+    "toyName": "Pull-Back Toy Cars",
+    "rating": 4.4,
+    "availableQuantity": 30,
+    "price": 14.99,
+    "description": "Fun and easy-to-play pull-back cars for toddlers. Safe, colorful, and made of non-toxic materials."
+  },
+  {
+    "id": 6,
+    "thumbnail": "/img-6.jpg",
+    "toyName": "RC Police Car",
+    "rating": 4.8,
+    "availableQuantity": 12,
+    "price": 34.99,
+    "description": "Fast and responsive remote-control police car with flashing lights and siren sounds — kids love it!"
+  },
+  {
+    "id": 7,
+    "thumbnail": "/img-7.jpg",
+    "toyName": "Lego Technic Formula Racer",
+    "rating": 4.9,
+    "availableQuantity": 9,
+    "price": 69.99,
+    "description": "Build your own F1-style racer with this advanced Lego Technic set. A thrilling project for young engineers."
+  },
+  {
+    "id": 8,
+    "thumbnail": "/img-8.jpg",
+    "toyName": "Toy Construction Truck Set",
+    "rating": 4.5,
+    "availableQuantity": 25,
+    "price": 29.99,
+    "description": "Includes dump truck, crane, and bulldozer toys made of durable plastic — ideal for sandbox play."
+  },
+  {
+    "id": 9,
+    "thumbnail": "/img-9.jpg",
+    "toyName": "Mini Fire Rescue Car",
+    "rating": 4.6,
+    "availableQuantity": 18,
+    "price": 19.99,
+    "description": "Cute fire rescue car with siren and light features. Great for kids who love emergency vehicles."
+  }
+]

@@ -1,22 +1,86 @@
-import React from "react";
+import { Link, useLoaderData } from "react-router";
+import { Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const AllToy = () => {
-  return (
-    <div className="bg-white rounded-xl shadow-md p-4 hover:shadow-xl transition duration-300">
-  <img
-    src="https://cdn.pixabay.com/photo/2016/03/31/20/11/lego-1297582_1280.png"
-    alt="toy"
-    className="w-full h-40 object-cover rounded-md mb-3"
-  />
-  <h3 className="text-lg font-semibold text-gray-800">Lego Classic Bricks</h3>
-  <p className="text-blue-600 font-medium mt-1">$49.99</p>
-  <p className="text-yellow-500 mt-1">⭐ 4.7</p>
-  <p className="text-gray-600 text-sm mt-1">Quantity: 75</p>
-  <button className="mt-3 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-    View More
-  </button>
-</div>
+  const popularToys = useLoaderData(); // Loaded from PopularToys.json
 
+  // Animation variants for cards
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
+    }),
+  };
+
+  return (
+    <section className="max-w-6xl mx-auto px-4 py-10">
+      {/* Animated heading */}
+      <motion.h2
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        // className="text-5xl font-extrabold text-center mb-12 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent drop-shadow-md"
+      >
+        {/* All toys */}
+      </motion.h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {popularToys.map((toy, i) => (
+          <motion.div
+            key={toy.id}
+            custom={i}
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col"
+          >
+            {/* Animated image zoom on hover */}
+            <div className="relative h-56 w-full overflow-hidden group">
+              <motion.img
+                src={toy.thumbnail || toy.pictureURL}
+                alt={toy.toyName}
+                className="w-full h-full object-cover rounded-t-2xl"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.4 }}
+              />
+              <span className="absolute top-3 left-3 bg-yellow-400 text-black px-2 py-1 rounded-md font-semibold flex items-center gap-1">
+                <Star size={14} /> {toy.rating}
+              </span>
+            </div>
+
+            <div className="p-5 flex flex-col justify-between flex-1">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">
+                {toy.toyName}
+              </h3>
+
+              <p className="text-sm text-gray-600 mb-1">
+                Available:{" "}
+                <span className="font-semibold text-gray-800">
+                  {toy.availableQuantity}
+                </span>
+              </p>
+
+              <p className="text-lg font-bold text-blue-600 mb-3">
+                ${toy.price}
+              </p>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-linear-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg transition-transform duration-200"
+              >
+                <Link to='/toydetailes'>View More</Link>
+              </motion.button>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
   );
 };
 

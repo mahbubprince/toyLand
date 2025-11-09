@@ -12,6 +12,10 @@ import AllToy from "./pages/AllToy.jsx";
 import About from "./pages/About.jsx";
 import Navbar from "./componants/Navbar.jsx";
 import { ToastContainer } from "react-toastify";
+import AuthProvider from "./Context/AuthProvider.jsx";
+// import { path } from "motion/react-client";
+import ErrorPage from "./pages/ErrorPage.jsx";
+import ToyDetailes from "./pages/ToyDetailes.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +25,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
+        loader: () => fetch("/PopularToys.json"),
       },
       {
         path: "/profile",
@@ -29,6 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/allToy",
         element: <AllToy></AllToy>,
+        loader: () => fetch("/Data.json"),
       },
       {
         path: "/about",
@@ -42,6 +48,7 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+      { path: "/toydetailes", element: <ToyDetailes></ToyDetailes> },
 
       // {
       //   index: true,
@@ -49,6 +56,9 @@ const router = createBrowserRouter([
       // },
     ],
   },
+  { path: "/*", element: <ErrorPage></ErrorPage> },
+  
+
   // {
   //   path: "/navbar",
   //   element: <Navbar></Navbar>,
@@ -65,7 +75,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
-    <ToastContainer></ToastContainer>
+    <AuthProvider>
+      <RouterProvider router={router} />
+      <ToastContainer></ToastContainer>
+    </AuthProvider>
   </StrictMode>
 );
