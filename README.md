@@ -33,4 +33,4 @@ ToyLand is a modern, interactive toy marketplace application built with React an
 ## How to Run Locally
 1. Clone the repository:
    ```bash
-   git clone  https://github.com/mahbubprince/toyLand 
+   git clone  https://github.com/mahbubprince/toyLand.git
