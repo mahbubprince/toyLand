@@ -48,7 +48,6 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_appId,
 };
 
-// console.log("API Key:", import.meta.env.VITE_apiKey); // ✅ check this
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

@@ -27,17 +27,23 @@ const router = createBrowserRouter([
         index: true,
         element: <Home></Home>,
         loader: () => fetch("/PopularToys.json"),
-        hydrateFallbackElement:<span className=" min-h-screen loading loading-bars loading-xl flex justify-center items-center mx-auto size-20"></span>
+        hydrateFallbackElement: (
+          <span className=" min-h-screen loading loading-bars loading-xl flex justify-center items-center mx-auto size-20"></span>
+        ),
       },
       {
         path: "/profile",
-        element: <Myprofile></Myprofile>,
+        element: <PrivareRoutes>
+          <Myprofile></Myprofile>
+        </PrivareRoutes>,
       },
       {
         path: "/allToy",
         element: <AllToy></AllToy>,
         loader: () => fetch("/Data.json"),
-        hydrateFallbackElement:<span className=" min-h-screen loading loading-bars loading-xl flex justify-center items-center mx-auto size-20"></span>
+        hydrateFallbackElement: (
+          <span className=" min-h-screen loading loading-bars loading-xl flex justify-center items-center mx-auto size-20"></span>
+        ),
       },
       {
         path: "/about",
@@ -59,7 +65,9 @@ const router = createBrowserRouter([
           </PrivareRoutes>
         ),
         loader: () => fetch("/Data.json"),
-        hydrateFallbackElement:<span className=" min-h-screen loading loading-bars loading-xl flex justify-center items-center mx-auto size-20"></span>
+        hydrateFallbackElement: (
+          <span className=" min-h-screen loading loading-bars loading-xl flex justify-center items-center mx-auto size-20"></span>
+        ),
       },
 
       // {

@@ -12,7 +12,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, loading, logOut } = useContext(AuthContext);
-  // console.log(navLoading)
   const handleLogout = () => {
     logOut()
       .then((res) => {
@@ -20,7 +19,6 @@ const Navbar = () => {
       })
       .catch((error) => console.log(error));
   };
-  // console.log(motion)
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Toys", path: "/allToy" },

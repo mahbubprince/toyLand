@@ -8,7 +8,7 @@ import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
   const location=useLocation()
-  console.log(location)
+  // console.log(location)
   const navigate = useNavigate();
   // const [user, setUser] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -28,13 +28,13 @@ const Login = () => {
       .then((result) => {
         setUser(result);
         setLoading(false);
-        console.log(result.user);
+        // console.log(result.user);
         toast.success("Google login successful!");
         navigate(`${location.state? location.state :'/'}`)
       })
       .catch((error) => {
         toast.error(error.message);
-        console.log(error.code);
+        // console.log(error.code);
       });
   };
 
@@ -69,7 +69,7 @@ const Login = () => {
 
   const handleForgotPassword = () => {
     const email = emailRef.current.value;
-    console.log(email);
+    // console.log(email);
     sendPasswordResetEmail(auth, email)
       .then((result) => {
         console.log(result);

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../Context/AuthContext";
 
 const AllToy = () => {
-  const popularToys = useLoaderData(); // Loaded from PopularToys.json
+  const popularToys = useLoaderData(); 
   // Animation variants for cards
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },

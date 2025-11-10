@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const ToyCard = ({ toy }) => {
   const { thumbnail, toyName, rating, availableQuantity, price } = toy;
-
+console.log(toy)
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
@@ -41,7 +41,7 @@ const ToyCard = ({ toy }) => {
 
           <div>
             <Link
-              to={`/toydetailes/${toy.toyId}`}
+              to={`/toydetailes/${toy.id}`}
               className="flex items-center gap-2 bg-linear-to-r from-blue-500 to-indigo-600 text-white font-semibold px-4 py-2 rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-lg"
             >
               <ShoppingCart size={18} />
