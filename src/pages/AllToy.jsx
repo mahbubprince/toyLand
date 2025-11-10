@@ -1,10 +1,10 @@
 import { Link, useLoaderData } from "react-router";
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { AuthContext } from "../Context/AuthContext";
 
 const AllToy = () => {
   const popularToys = useLoaderData(); // Loaded from PopularToys.json
-
   // Animation variants for cards
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -16,7 +16,7 @@ const AllToy = () => {
   };
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-10">
+    <section className="w-11/12 mx-auto px-4 py-10">
       {/* Animated heading */}
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
@@ -42,7 +42,7 @@ const AllToy = () => {
             {/* Animated image zoom on hover */}
             <div className="relative h-56 w-full overflow-hidden group">
               <motion.img
-                src={toy.thumbnail || toy.pictureURL}
+                src={toy.pictureURL}
                 alt={toy.toyName}
                 className="w-full h-full object-cover rounded-t-2xl"
                 whileHover={{ scale: 1.1 }}
@@ -57,6 +57,9 @@ const AllToy = () => {
               <h3 className="text-xl font-bold text-gray-800 mb-2">
                 {toy.toyName}
               </h3>
+              <p className="text-[16px] text-gray-600 mb-3">
+                {toy.description}
+              </p>
 
               <p className="text-sm text-gray-600 mb-1">
                 Available:{" "}
@@ -68,13 +71,15 @@ const AllToy = () => {
               <p className="text-lg font-bold text-blue-600 mb-3">
                 ${toy.price}
               </p>
-
+           
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-linear-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg transition-transform duration-200"
+                
               >
-                <Link to='/toydetailes'>View More</Link>
+                <div className="bg-linear-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg transition-transform duration-200">
+                  <Link to={`/toydetailes/${toy.toyId}`}>View More</Link>
+                </div>
               </motion.button>
             </div>
           </motion.div>

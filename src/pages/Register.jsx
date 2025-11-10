@@ -22,7 +22,6 @@ const Register = () => {
     updateProfilefunc,
     githubProviderFunc,
     logOut,
-
     setUser,
     setLoading,
   } = useContext(AuthContext);
@@ -33,6 +32,8 @@ const Register = () => {
       .then((result) => {
         setLoading(false);
         console.log(result.user);
+        toast.success(" Login successful with Google");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => console.log(error));
   };
@@ -42,7 +43,8 @@ const Register = () => {
       .then((result) => {
         setLoading(false);
         console.log(result.user);
-        toast.success("register by github");
+        toast.success(" Login successful with Github");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         console.log(error);
@@ -51,7 +53,6 @@ const Register = () => {
 
   const handelSubmit = (e) => {
     e.preventDefault();
-
     const email = e.target.email.value;
     const password = e.target.password.value;
     const photoURL = e.target.photoURl.value;
@@ -69,19 +70,16 @@ const Register = () => {
       return;
     }
 
-    // ✅ Start registration
     createUserWithEmailAndPasswordFunc(email, password)
       .then((result) => {
         const newUser = result.user;
-        toast.success("Please login to continue!");
+        // toast.success("Please login to continue!");
 
-        // ✅ Update Firebase profile
         return updateProfilefunc(displayName, photoURL)
           .then(() => {
-            // ✅ Update your context
             setUser({ ...newUser, displayName, photoURL });
+            toast.success("Successfully registered. please login to continue!");
 
-            // ✅ Log out after profile update
             return logOut()
               .then(() => {
                 navigate("/login");
@@ -92,9 +90,6 @@ const Register = () => {
           })
           .then(() => {
             setUser(null);
-            // toast.success("Please login to continue!");
-            // ✅ Navigate to login page
-            // navigate("/login");
           });
       })
       .catch((error) => {
@@ -107,7 +102,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-blue-50 to-blue-100 px-4">
+    <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-blue-50 to-blue-100 px-4 py-7">
       <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
         {/* Title */}
         <h2 className="text-3xl font-bold text-center text-blue-700 mb-2">
@@ -118,7 +113,7 @@ const Register = () => {
         </p>
 
         {/* Register Form */}
-        <form onSubmit={handelSubmit} className="space-y-5">
+        <form onSubmit={handelSubmit} className="space-y-3 ">
           {/* Name */}
           <div>
             <label className="block text-gray-700 font-medium mb-2">
@@ -126,12 +121,12 @@ const Register = () => {
             </label>
             <input
               type="text"
+              required
               name="name"
               placeholder="Enter your full name"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
             />
           </div>
-
           {/* Email */}
           <div>
             <label className="block text-gray-700 font-medium mb-2">
@@ -139,12 +134,12 @@ const Register = () => {
             </label>
             <input
               type="email"
+              required
               name="email"
               placeholder="Enter your email"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
             />
           </div>
-
           {/* Photo URL */}
           <div>
             <label className="block text-gray-700 font-medium mb-2">
@@ -152,12 +147,12 @@ const Register = () => {
             </label>
             <input
               type="text"
+              required
               name="photoURl"
               placeholder="Paste your profile photo link"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
             />
           </div>
-
           {/* Password */}
           <div className="relative">
             <label className="block text-gray-700 font-medium mb-2">
@@ -166,6 +161,7 @@ const Register = () => {
             <input
               type={showPassword ? "text" : "password"}
               name="password"
+              required
               placeholder="Create a password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
             />
@@ -176,7 +172,6 @@ const Register = () => {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
-
           {/* Register Button */}
           <button
             type="submit"
@@ -185,7 +180,6 @@ const Register = () => {
             Register
           </button>
         </form>
-
         {/* Divider */}
         <div className="flex items-center my-6">
           <div className="flex-1 border-t border-gray-300"></div>

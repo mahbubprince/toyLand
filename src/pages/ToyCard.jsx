@@ -28,6 +28,7 @@ const ToyCard = ({ toy }) => {
         <h3 className="text-lg font-bold text-gray-800 line-clamp-2 mb-1">
           {toyName}
         </h3>
+
         <p className="text-sm text-gray-500 mb-2">
           Available:{" "}
           <span className="font-semibold text-gray-700">
@@ -38,10 +39,15 @@ const ToyCard = ({ toy }) => {
         <div className="flex items-center justify-between mt-auto">
           <p className="text-xl font-bold text-blue-600">${price}</p>
 
-          <button className="flex items-center gap-2 bg-linear-to-r from-blue-500 to-indigo-600 text-white font-semibold px-4 py-2 rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-lg">
-            <ShoppingCart size={18} />
-            <Link to='/toydetailes'>Buy now</Link>
-          </button>
+          <div>
+            <Link
+              to={`/toydetailes/${toy.toyId}`}
+              className="flex items-center gap-2 bg-linear-to-r from-blue-500 to-indigo-600 text-white font-semibold px-4 py-2 rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-lg"
+            >
+              <ShoppingCart size={18} />
+              Buy now
+            </Link>
+          </div>
         </div>
       </div>
     </motion.div>
@@ -49,4 +55,3 @@ const ToyCard = ({ toy }) => {
 };
 
 export default ToyCard;
-

@@ -9,20 +9,18 @@ import { CircleLoader } from "react-spinners";
 // import { toast } from "react-toastify";
 
 const Navbar = () => {
-  
-
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, loading, logOut } = useContext(AuthContext);
   // console.log(navLoading)
- const handleLogout = () => {
-  logOut()
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((error) => console.log(error));
-};
-// console.log(motion)
+  const handleLogout = () => {
+    logOut()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
+  };
+  // console.log(motion)
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Toys", path: "/allToy" },
@@ -73,7 +71,7 @@ const Navbar = () => {
               >
                 <img
                   src={user.photoURL || "https://via.placeholder.com/40"}
-                   title={user.displayName || "User"}
+                  title={user.displayName || "User"}
                   alt="User"
                   className="w-10 h-10 rounded-full border cursor-pointer"
                 />

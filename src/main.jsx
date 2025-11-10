@@ -16,6 +16,7 @@ import AuthProvider from "./Context/AuthProvider.jsx";
 // import { path } from "motion/react-client";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import ToyDetailes from "./pages/ToyDetailes.jsx";
+import PrivareRoutes from "./componants/PrivareRoutes.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Home></Home>,
         loader: () => fetch("/PopularToys.json"),
+        hydrateFallbackElement:<span className=" min-h-screen loading loading-bars loading-xl flex justify-center items-center mx-auto size-20"></span>
       },
       {
         path: "/profile",
@@ -35,6 +37,7 @@ const router = createBrowserRouter([
         path: "/allToy",
         element: <AllToy></AllToy>,
         loader: () => fetch("/Data.json"),
+        hydrateFallbackElement:<span className=" min-h-screen loading loading-bars loading-xl flex justify-center items-center mx-auto size-20"></span>
       },
       {
         path: "/about",
@@ -48,7 +51,16 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
-      { path: "/toydetailes", element: <ToyDetailes></ToyDetailes> },
+      {
+        path: "/toydetailes/:toyId",
+        element: (
+          <PrivareRoutes>
+            <ToyDetailes></ToyDetailes>,
+          </PrivareRoutes>
+        ),
+        loader: () => fetch("/Data.json"),
+        hydrateFallbackElement:<span className=" min-h-screen loading loading-bars loading-xl flex justify-center items-center mx-auto size-20"></span>
+      },
 
       // {
       //   index: true,
@@ -57,7 +69,6 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/*", element: <ErrorPage></ErrorPage> },
-  
 
   // {
   //   path: "/navbar",
