@@ -7,13 +7,14 @@ const ErrorPage = () => {
   const error = useRouteError();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 via-white to-pink-100 text-gray-800 px-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-linear-to-br from-blue-50 via-white to-pink-100 text-gray-800 px-6">
+      <title>ToyLand-Error404</title>
       {/* Animated Number */}
       <motion.h1
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.6, type: "spring" }}
-        className="text-[150px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-pink-500 select-none"
+        className="text-[150px] font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-pink-500 select-none"
       >
         404
       </motion.h1>

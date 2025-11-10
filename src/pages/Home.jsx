@@ -8,6 +8,7 @@ const Home = () => {
 
   return (
     <>
+    <title>ToyLand-Home</title>
       <div className="container mx-auto">
         <Slider></Slider>
       </div>

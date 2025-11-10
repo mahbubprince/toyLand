@@ -13,10 +13,10 @@ import About from "./pages/About.jsx";
 import Navbar from "./componants/Navbar.jsx";
 import { ToastContainer } from "react-toastify";
 import AuthProvider from "./Context/AuthProvider.jsx";
-// import { path } from "motion/react-client";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import ToyDetailes from "./pages/ToyDetailes.jsx";
 import PrivareRoutes from "./componants/PrivareRoutes.jsx";
+import ForgotPassword from "./pages/ForgetPass.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,9 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <PrivareRoutes>
-          <Myprofile></Myprofile>
-        </PrivareRoutes>,
+        element: (
+          <PrivareRoutes>
+            <Myprofile></Myprofile>
+          </PrivareRoutes>
+        ),
       },
       {
         path: "/allToy",
@@ -69,27 +71,13 @@ const router = createBrowserRouter([
           <span className=" min-h-screen loading loading-bars loading-xl flex justify-center items-center mx-auto size-20"></span>
         ),
       },
-
-      // {
-      //   index: true,
-      //   element: <Home></Home>,
-      // },
     ],
   },
   { path: "/*", element: <ErrorPage></ErrorPage> },
-
-  // {
-  //   path: "/navbar",
-  //   element: <Navbar></Navbar>,
-  // },
-  // {
-  //   path: "/login",
-  //   element: <Login></Login>,
-  // },
-  // {
-  //   path: "/register",
-  //   element: <Register></Register>,
-  // },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

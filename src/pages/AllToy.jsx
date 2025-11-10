@@ -17,20 +17,21 @@ const AllToy = () => {
 
   return (
     <section className="w-11/12 mx-auto px-4 py-10">
+      <title>ToyLand-AllTot</title>
       {/* Animated heading */}
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        // className="text-5xl font-extrabold text-center mb-12 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent drop-shadow-md"
+        
       >
         {/* All toys */}
       </motion.h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {popularToys.map((toy, i) => (
+        {popularToys.map((toy, i) =>  (
           <motion.div
-            key={toy.id}
+            key={toy.toyId}
             custom={i}
             variants={cardVariants}
             initial="hidden"

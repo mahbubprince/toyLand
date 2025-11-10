@@ -1,42 +1,24 @@
-import React, { use, useRef, useState } from "react";
-import { sendPasswordResetEmail } from "firebase/auth";
+
+import React, { useRef, useState, useContext } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router"; 
-import { auth } from "../firebase/Firebase.config";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
-  const location=useLocation()
-  // console.log(location)
+  const location = useLocation();
   const navigate = useNavigate();
-  // const [user, setUser] = useState(null);
+
   const [showPassword, setShowPassword] = useState(false);
+  const emailRef = useRef(null);
+
   const {
     signInWithEmailAndPasswordFunc,
     googleProviderFunc,
     githubProviderFunc,
     setLoading,
     setUser,
-  } = use(AuthContext);
-  // const [emailForReset, setEmailForReset] = useState("");
-  const emailRef = useRef(null);
-
-  const handleGoogleLogin = () => {
-    // signInWithPopup(auth, googleProvider)
-    googleProviderFunc()
-      .then((result) => {
-        setUser(result);
-        setLoading(false);
-        // console.log(result.user);
-        toast.success("Google login successful!");
-        navigate(`${location.state? location.state :'/'}`)
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        // console.log(error.code);
-      });
-  };
+  } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,42 +26,39 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    // signInWithEmailAndPassword(auth, email, password)
     signInWithEmailAndPasswordFunc(email, password)
       .then((result) => {
         setUser(result.user);
-        toast.success("Login successful!");
-        // navigate("/");
-        navigate(`${location.state? location.state :'/'}`)
+        toast.success("🎉 Login successful!");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => toast.error(error.message));
   };
-  const handleGithubRegistation = () => {
-    // signInWithPopup(auth, githubProvider)
-    githubProviderFunc()
+
+  const handleGoogleLogin = () => {
+    googleProviderFunc()
       .then((result) => {
-        console.log(result.user);
-        toast.success("register by github");
-        navigate(`${location.state? location.state :'/'}`)
+        setUser(result.user);
+        setLoading(false);
+        toast.success("✅ Google login successful!");
+        navigate(`${location.state ? location.state : "/"}`);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => toast.error(error.message));
   };
 
-  const handleForgotPassword = () => {
-    const email = emailRef.current.value;
-    // console.log(email);
-    sendPasswordResetEmail(auth, email)
+  const handleGithubLogin = () => {
+    githubProviderFunc()
       .then((result) => {
-        console.log(result);
-        toast.success("Password reset email sent!");
+        setUser(result.user);
+        toast.success("✅ GitHub login successful!");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => toast.error(error.message));
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 px-4">
+    <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-blue-50 to-blue-100 px-4">
+      <title>ToyTopia - Login</title>
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-blue-700 mb-2">
           Welcome Back 👋
@@ -88,9 +67,7 @@ const Login = () => {
           Login to continue exploring amazing toys 🎲
         </p>
 
-        {/* {user ? (
-          
-        ) : ( */}
+        {/*  Login Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Email */}
           <div>
@@ -99,11 +76,10 @@ const Login = () => {
             </label>
             <input
               type="email"
-              required
-              ref={emailRef}
               name="email"
+              ref={emailRef}
               placeholder="Enter your email"
-              // onChange={(e) => setEmailForReset(e.target.value)}
+              required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
             />
           </div>
@@ -116,8 +92,8 @@ const Login = () => {
             <input
               type={showPassword ? "text" : "password"}
               name="password"
-              required
               placeholder="Enter your password"
+              required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
             />
             <span
@@ -128,35 +104,38 @@ const Login = () => {
             </span>
           </div>
 
-          {/* Forgot password */}
+          {/* Forgot password  */}
           <div className="text-right">
             <button
               type="button"
-              onClick={handleForgotPassword}
+              onClick={() =>
+                navigate("/forgot-password", {
+                  state: { email: emailRef.current?.value || "" },
+                })
+              }
               className="text-sm text-blue-600 hover:underline"
             >
               Forgot Password?
             </button>
           </div>
 
-          {/* Login button */}
+          {/* Login Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-300 shadow-md"
+            className="w-full bg-linear-to-r from-blue-600 to-indigo-600 text-white font-semibold py-2 rounded-lg transition duration-300 shadow-md hover:scale-105"
           >
             Login
           </button>
         </form>
-        {/* )} */}
 
-        {/* {!user && (
-          <> */}
+        {/* Divider */}
         <div className="flex items-center my-6">
           <div className="flex-1 border-t border-gray-300"></div>
           <span className="px-3 text-gray-500 text-sm">or</span>
           <div className="flex-1 border-t border-gray-300"></div>
         </div>
 
+        {/* Google Login */}
         <button
           onClick={handleGoogleLogin}
           className="border border-gray-300 w-full bg-white text-black py-2 rounded-lg hover:bg-gray-100 flex items-center justify-center space-x-2"
@@ -191,15 +170,15 @@ const Login = () => {
           <span>Login with Google</span>
         </button>
 
-        {/* github */}
+        {/* GitHub Login */}
         <button
-          onClick={handleGithubRegistation}
-          className="w-full mt-3 btn bg-black text-white border-black"
+          onClick={handleGithubLogin}
+          className="w-full mt-3 bg-black text-white py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-900 transition"
         >
           <svg
             aria-label="GitHub logo"
-            width="16"
-            height="16"
+            width="18"
+            height="18"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -212,7 +191,7 @@ const Login = () => {
         </button>
 
         <p className="text-center text-sm text-gray-600 mt-6">
-          Don’t have an account?{" "}
+          Don't have an account?{" "}
           <Link
             to="/register"
             className="text-blue-600 hover:underline font-medium"
@@ -220,11 +199,11 @@ const Login = () => {
             Create one
           </Link>
         </p>
-        {/* </> */}
-        {/* )} */}
       </div>
     </div>
   );
 };
 
 export default Login;
+
+

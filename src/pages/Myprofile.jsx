@@ -27,6 +27,7 @@ const Myprofile = () => {
 
   return (
     <section className="max-w-3xl mx-auto px-4 py-10">
+        <title>ToyLand-MyProfile</title>
       <h2 className="text-4xl font-bold text-center mb-8 bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
         My Profile
       </h2>

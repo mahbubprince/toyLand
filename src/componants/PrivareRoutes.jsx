@@ -4,10 +4,10 @@ import { Navigate, useLocation } from "react-router";
 
 const PrivareRoutes = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
-//   console.log(user, loading);
+  //   console.log(user, loading);
 
-  const location=useLocation()
-//   console.log(location)
+  const location = useLocation();
+  //   console.log(location)
 
   if (loading) {
     return (

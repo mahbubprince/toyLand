@@ -1,21 +1,14 @@
 import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
-import {
-  GithubAuthProvider,
-  GoogleAuthProvider,
 
-  // signInWithPopup,
-} from "firebase/auth";
-// import { auth } from "../firebase/Firebase.config";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 
 const Register = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  // const googleProvidar = new GoogleAuthProvider();
-  // const githubProvider = new GithubAuthProvider();
+
   const {
     createUserWithEmailAndPasswordFunc,
     googleProviderFunc,
@@ -103,6 +96,7 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-blue-50 to-blue-100 px-4 py-7">
+      <title>ToyLand-Register</title>
       <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
         {/* Title */}
         <h2 className="text-3xl font-bold text-center text-blue-700 mb-2">
@@ -187,10 +181,7 @@ const Register = () => {
           <div className="flex-1 border-t border-gray-300"></div>
         </div>
 
-        {/* Google Register */}
-        {/* <button className="w-full border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-2 rounded-lg transition duration-300">
-          Continue with Google
-        </button> */}
+        
         <button
           onClick={handelGoogleReg}
           className="border border-gray-300 w-full btn bg-white text-black hover:bg-gray-100"

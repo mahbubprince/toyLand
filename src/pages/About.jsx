@@ -4,6 +4,7 @@ const About = () => {
   return (
     <div className="bg-linear-to-b from-blue-50 to-blue-100 min-h-screen py-12 px-4">
       {/* Hero Section */}
+      <title>ToyLand-About</title>
       <div className="max-w-5xl mx-auto text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-blue-700 mb-4">
           About ToyLand

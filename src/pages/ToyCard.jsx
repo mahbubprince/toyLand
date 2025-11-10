@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const ToyCard = ({ toy }) => {
   const { thumbnail, toyName, rating, availableQuantity, price } = toy;
-console.log(toy)
+// console.log(toy)
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
