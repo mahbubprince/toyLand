@@ -43,6 +43,7 @@ const Footer = () => {
         © {new Date().getFullYear()} ToyLand — All Rights Reserved.
       </div>
     </footer>
+    
   );
 };
 
